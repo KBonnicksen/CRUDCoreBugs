@@ -33,7 +33,7 @@ namespace CRUDWithIssuesCore.Controllers
             if (ModelState.IsValid)
             {
                 StudentDb.Add(p, context);
-                ViewData["Message"] = $"{p.Name} was added!";
+                TempData["Message"] = $"{p.Name} was added!";
                 return RedirectToAction("Index");
             }
 
@@ -56,11 +56,11 @@ namespace CRUDWithIssuesCore.Controllers
             if (ModelState.IsValid)
             {
                 StudentDb.Update(context, p);
-                ViewData["Message"] = "Product Updated!";
-                return View(p);
+                TempData["Message"] = "Product Updated!";
+                return RedirectToAction("Index");
             }
             //return view with errors
-            return RedirectToAction("Index");
+            return View(p);
         }
 
         public IActionResult Delete(int id)
