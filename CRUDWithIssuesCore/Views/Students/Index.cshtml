@@ -3,11 +3,15 @@
 @{
     ViewData["Title"] = "AllStudents";
 }
-@if(TempData["Message"] != null)
+
+@if (TempData["Message"] != null)
 {
-    <p>@TempData["Message"]</p>
+    <div class="alert alert-dismissible">
+        <p>@TempData["Message"]</p>
+    </div>
 }
-<h1>AllStudents</h1>
+
+<h1>Students</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -28,23 +32,23 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.StudentId}) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.StudentId})
-            </td>
-        </tr>
-}
+        @foreach (Student item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
