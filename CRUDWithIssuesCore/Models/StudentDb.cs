@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace CRUDWithIssuesCore.Models
         public static void Delete(SchoolContext context, Student p)
         {
             //Mark the object as deleted
-            context.Students.Remove(p);
+            context.Entry(p).State = EntityState.Deleted;
 
             //Send delete query to database
             context.SaveChanges();

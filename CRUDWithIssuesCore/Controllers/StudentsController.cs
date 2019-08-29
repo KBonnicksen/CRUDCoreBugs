@@ -56,7 +56,7 @@ namespace CRUDWithIssuesCore.Controllers
             if (ModelState.IsValid)
             {
                 StudentDb.Update(context, p);
-                TempData["Message"] = "Product Updated!";
+                TempData["Message"] = "Student Updated!";
                 return RedirectToAction("Index");
             }
             //return view with errors
